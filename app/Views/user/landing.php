@@ -5,7 +5,7 @@
 	<div class="jumbotron jumbotron-fluid welcome-div" style="padding-top: 15%;">
 		<div class="row">
 			<div class="col-md-8">
-				<h1 class="h1">Hello, Welcome To This Website</h1>
+				<h1 class="h1">apliasi administrasi sekolah</h1>
 				<br>
 				<br>
 				<p>This is a website for TOEIC materials and practice tests. It’s such designed to give Global Students a different experience of accessing the TOIEC Materials and working on the Practice Tests. You will find 5 units of discussions followed by the total of 250 questions served as practice tests and 100 question items in the review part. Explore all parts and sharpen your English test mastery. Go for it!</p>
