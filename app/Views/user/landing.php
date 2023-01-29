@@ -1,88 +1,132 @@
-<?= $this->extend('template/landing_page/home_layout') ?>
+<?= $this->extend('layout/template') ?>
 
 <?= $this->section('content') ?>
-<div id="first">
-	<div class="jumbotron jumbotron-fluid welcome-div" style="padding-top: 15%;">
+<!-- HERO -->
+<section class="hero hero-bg d-flex justify-content-center align-items-center">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
-				<h1 class="h1">apliasi administrasi sekolah</h1>
-				<br>
-				<br>
-				<p>This is a website for TOEIC materials and practice tests. It’s such designed to give Global Students a different experience of accessing the TOIEC Materials and working on the Practice Tests. You will find 5 units of discussions followed by the total of 250 questions served as practice tests and 100 question items in the review part. Explore all parts and sharpen your English test mastery. Go for it!</p>
-				<br>
-				<br>
-				<h1>Are you ready to Test?</h1>
+			<div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
+				<div class="hero-text">
+					<h2 class="text-white" data-aos="fade-up">
+						Selamat Datang Di website Kami!
+					</h2>
+					<p class="text-white" data-aos="fade-up" data-aos-delay="200">
+						Sistem Administrasi MI AL-MUBAROK
+					</p>
+
+					<a href="#" target="_blank" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">
+						<p style="color: #018249;font-size: 10px;">dapatkan informasi</p>
+						Tagihan Sekolah
+					</a>
+					<a href="#" target="_blank" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">
+						<p style="color: #018249;font-size: 10px;">dapatkan informasi</p>
+						Riwayat Pembayaran
+					</a>
+				</div>
 			</div>
-			<div class="col-md-4">
-				<img src="<?= base_url('img/idea.png') ?>" width="100%" height="100%" alt="ilustrator">
+
+			<div class="col-lg-6 col-12">
+				<div class="hero-image" data-aos="fade-up" data-aos-delay="300">
+					<img src="landing/images/working-girl.png" class="img-fluid" alt="working girl" />
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div id="home">
-	<div class="container text-center" style="padding-top: 10%;">
-		<h1 class="center">Our Feature</h1>
-		<hr>
-		<br>
+</section>
+
+<!-- Our Solution -->
+<section class="about section-padding pb-0" id="about">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-6  text-left">
-				<div class="card">
-					<div class="card-body">
-						<h2 class="card-title"><i class="fas fa-fw fa-sitemap"></i> Module Test</h2>
-						<br>
-						<br>
-						<p class="card-text">updated TOEIC sample questions module.</p>
-					</div>
-				</div>
+			<div class="col-lg-12 mx-auto col-md-10 col-12">
+				<h2 class="mb-4 text-center" data-aos="fade-up">
+					Sejarah Sekolah
+				</h2>
 				<hr>
-				<div class="card">
-					<div class="card-body">
-						<h2 class="card-title"><i class="fas fa-fw fa-list"></i> Unit Test</h2>
-						<br>
-						<br>
-						<p class="card-text">TOEIC test questions are updated and appear most often on tests.</p>
-					</div>
-				</div>
-				<hr>
-				<div class="card">
-					<div class="card-body">
-						<h2 class="card-title"><i class="fa fa-scroll"></i> Test Annaouncement</h2>
-						<br>
-						<br>
-						<p class="card-text">announcement of the latest test schedule and events related to TOEIC.</p>
-					</div>
-				</div>
-				<hr>
-				<div class="card">
-					<div class="card-body">
-						<h2 class="card-title"><i class="fa fa-user-secret"></i> Tips & Tricks</h2>
-						<br>
-						<br>
-						<p class="card-text">very useful tips and tricks on how to do the TOEIC test.</p>
-					</div>
-				</div>
-				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6" data-aos="fade-up">
+				<img src="img/sejarah_ilus.png" class="img-fluid" alt="working girl" />
+			</div>
+			<div class="col-md-6" data-aos="fade-up">
+				<p>Madrasah Ibtidaiyah Al-Mubarok berawal Madrasah Diniyah karna perkembangan zaman maka di rubahnya status menjadi Ibtidaiyah awal berdiri Madrasah Ibtidaiyah Al-Mubarok Secara resmi pada tanggal 7 November 1991 dengan nomor registrasi 15202041827 berdasarkan surat keputusan kepala Departemen Agama Provinsi Jawa Barat: w.y/ Hk.008/54/1992 Tanggal 30 Januari 1992' Madrasah Ibtidaiyah Al-Mubarok adalah salah satu satuan pendidikan dengan jenjang MI di panunggangan, kec. pinang kota Tangerang, Banten. Dalam menjalankan kegiatannya, Madrasah Ibtidaiyah Al-Mubarok berada di bawah naungan kementrian Agama.</p>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+<!-- Our Team -->
+<section class="project section-padding" id="teamkami">
+	<div class="container">
+		<div class="row" data-aos="fade-up" data-aos-delay="200">
+			<div class="col-md-6" style="padding: 5%;">
+				<h3 style="color: #0066BB;">TIM BERKAMPUAN LENGKAP</h3>
+				<h1>Dipimpin Oleh Praktisi Berpengalaman</h1>
+				<p style="color: #000000;">Tim kami terdiri dari beberapa ahli yang dapat
+					memberikan solusi di bidang Network Management
+					dan Software Development.</p>
 			</div>
 			<div class="col-md-6">
-				<img src="<?= base_url('img/website-maintenance.png') ?>" width="100%" height="80%" alt="ilustrator">
+				<img src="landing/images/project/project-image01.jpg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
+			</div>
+		</div>
+		<div class="row" data-aos="fade-up" data-aos-delay="200">
+			<div class="col-md-6"><img src="landing/images/project/project-image02.jpg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
+			</div>
+			<div class="col-md-6" style="padding: 5%;">
+				<h3 style="color: #0066BB;">BERKOLABORASI DENGAN FREELANCE</h3>
+				<h1>Disupport oleh banyak Developer</h1>
+				<p style="color: #000000;">Kami berkerjasama dengan para developer
+					dari berbagai bidang bisnis.</p>
 			</div>
 		</div>
 	</div>
-	<div id="about">
-		<div class="container">
-			<div class="text-center">
-				<h1>About Us</h1>
-			</div>
-			<hr>
-			<br>
-			<div class="row">
-				<div class="col-md-6 p-5">
-					<img src="<?= base_url('img/website-interface.png') ?>" width="100%" height="100%" alt="ilustrator">
+</section>
+
+
+
+<!-- TESTIMONIAL -->
+<section class="about section-padding" id="tentangkami">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-12 col-md-7 col-12 justify-content-center text-center">
+				<h2 class="my-5 pt-3" data-aos="fade-up" data-aos-delay="100">
+					<strong>Lokasi Sekolah</strong>
+				</h2>
+				<div class="quote" data-aos="fade-up" data-aos-delay="200"></div>
+
+				<h4 class="mb-4" data-aos="fade-up" data-aos-delay="300">
+					MI AL-Mubarok
+				</h4>
+				<div class="col-md-12" style="height: 290px;margin-bottom: 5%;" data-aos="fade-up" data-aos-delay="200">
+					<div class="mapouter">
+						<div class="gmap_canvas"><iframe width="1080" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=JL.%20KH.%20Dero%20Rt004/003,%20Kp.%20kosong,%20Panunggangan,%20%20Kec.%20Pinang%20Kota%20Tangerang%20Banten.&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://fmovies-online.net"></a><br>
+							<style>
+								.mapouter {
+									position: relative;
+									text-align: right;
+									height: 500px;
+									width: 1080px;
+								}
+							</style><a href="https://www.embedgooglemap.net"></a>
+							<style>
+								.gmap_canvas {
+									overflow: hidden;
+									background: none !important;
+									height: 500px;
+									width: 1080px;
+								}
+							</style>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-6 p-5">
-					<p>Our website design on TOEIC is for the purpose of practices in the Reading Section. We try our best to accommodate the needs of those expecting to sharpen their performance in a test, particularly an English test. The reading part is chosen to help test takers stay more focused since the question items encompass not only sentence structure and grammar but also diverse business-related vocabulary. We do hope that this website can be beneficial and serve as an alternative learning medium to anyone accessing it.</p>
+				<div class="col-md-12">
+					<br>
+					<br>
 				</div>
 			</div>
 		</div>
 	</div>
-	<?= $this->endSection() ?>
+</section>
+<?= $this->endSection() ?>

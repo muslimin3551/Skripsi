@@ -7,8 +7,8 @@
 }
 
 .welcome-div {
-    background-color: #1D4B82;
-    color: #FFFFFF;
+    background-color:rgba(89, 100, 208, 0.05);
+    color: #000000;
     padding: 10%;
 }
 
@@ -54,9 +54,18 @@
 
 .login-btn {
     font-weight: bold;
-    background-color: #1D4B82;
+    background-color: #018249;
     border-radius: 30px;
-    width: 150px;
+    width: 170px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.login-btn:hover {
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #018249;
+    border-radius: 30px;
+    width: 170px;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -83,7 +92,7 @@
 /* footer */
 
 .footer {
-    background-color: #1D4B82;
+    background-color: #018249;
 }
 
 /* admin part */
