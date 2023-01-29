@@ -1,6 +1,6 @@
 .content {
   padding: 32px;
-  background: #fff;
+  background: #F6F7FC;
   min-height: 100vh;
   margin-left: 260px;
   transition: all 0.5s ease;
@@ -70,11 +70,19 @@ header p {
 }
 
 .debit {
-  /* background-image: url('../../assets/images/bg_card.png'); */
+  background-image: url('../../img/debit.png');
   color: #fff;
   display: flex;
   background-size: cover;
-  background-color: #018249;
+  /* background-color: #018249; */
+  justify-content: space-between;
+}
+.note {
+  background-image: url('../../img/ket_back.png');
+  color: #000000;
+  display: flex;
+  background-size: cover;
+  /* background-color: #EFF1FA; */
   justify-content: space-between;
 }
 

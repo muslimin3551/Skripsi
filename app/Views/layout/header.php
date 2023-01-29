@@ -1,5 +1,5 @@
    <!-- MENU BAR -->
-   <nav class="navbar navbar-expand-lg">
+   <nav class="navbar navbar-expand-lg" style="position: fixed;">
        <div class="container">
            <a class="navbar-brand" href="/">
                <img src="./img/logo.png" alt="mi al-mubarok logo" height="60px" width="60px"/>
@@ -12,16 +12,16 @@
            <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav ml-auto">
                    <li class="nav-item">
-                       <a href="/#about" class="nav-link">profil</a>
+                       <a href="/#sejarah" class="nav-link">Sejarah Sekolah</a>
                    </li>
                    <li class="nav-item">
-                       <a href="/#teamkami" class="nav-link">Kegiatan</a>
+                       <a href="/#kegiatan" class="nav-link">Kegiatan Sekolah</a>
                    </li>
                    <li class="nav-item">
-                       <a href="/#tentangkami" class="nav-link">Tentang Kami</a>
+                       <a href="/#lokasi" class="nav-link">Lokasi Sekolah</a>
                    </li>
                    <li class="nav-item">
-                       <a href="contact_us" class="nav-link contact">Masuk ke Website</a>
+                       <a href="/login" class="nav-link contact">Masuk ke Website</a>
                    </li>
                </ul>
            </div>

@@ -35,7 +35,7 @@
 </section>
 
 <!-- Our Solution -->
-<section class="about section-padding pb-0" id="about">
+<section class="about section-padding pb-0" id="sejarah">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 mx-auto col-md-10 col-12">
@@ -57,7 +57,7 @@
 	</div>
 </section>
 <!-- Our Team -->
-<section class="project section-padding" id="teamkami">
+<section class="project section-padding" id="kegiatan">
 	<div class="container">
 		<div class="row" data-aos="fade-up" data-aos-delay="200">
 			<div class="col-md-6" style="padding: 5%;">
@@ -87,7 +87,7 @@
 
 
 <!-- TESTIMONIAL -->
-<section class="about section-padding" id="tentangkami">
+<section class="about section-padding" id="lokasi">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-12 col-md-7 col-12 justify-content-center text-center">
