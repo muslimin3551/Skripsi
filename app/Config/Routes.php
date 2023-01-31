@@ -43,6 +43,14 @@ $routes->get('/login', 'User\Login::index');
 $routes->get('/profile', 'User\Profile::index');
 $routes->get('/forgot_password', 'User\Login::forgot_password');
 
+//admin
+$routes->group('admin', function ($routes) {
+	$routes->get('', 'Admin::index');
+	$routes->get('login', 'Admin\Login::index');
+	$routes->post('auth', 'LoginAdmin::auth');
+	$routes->get('logout', 'LoginAdmin::logout');
+	$routes->get('dashboard', 'Admin\Dashboard::index');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
