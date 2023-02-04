@@ -47,9 +47,23 @@ $routes->get('/forgot_password', 'User\Login::forgot_password');
 $routes->group('admin', function ($routes) {
 	$routes->get('', 'Admin::index');
 	$routes->get('login', 'Admin\Login::index');
-	$routes->post('auth', 'LoginAdmin::auth');
-	$routes->get('logout', 'LoginAdmin::logout');
+	$routes->get('forgot', 'Admin\Login::forgot_password');
+	$routes->get('reset', 'Admin\Login::reset_password');
+	$routes->post('auth', 'Admin\Login::auth');
+	$routes->get('logout', 'Admin\Login::logout');
+	// main menu
 	$routes->get('dashboard', 'Admin\Dashboard::index');
+	$routes->get('user', 'Admin\User::index');
+	$routes->get('payment', 'Admin\Payment::index');
+	$routes->get('invoice', 'Admin\Invoice::index');
+	//master data
+	$routes->get('student', 'Admin\Student::index');
+	$routes->get('class', 'Admin\Student_class::index');
+	$routes->get('student_type', 'Admin\Student_type::index');
+	$routes->get('item', 'Admin\Item::index');
+	//end
+	$routes->get('role', 'Admin\Role::index');
+	$routes->get('role_access', 'Admin\Access::index');
 });
 /*
  * --------------------------------------------------------------------

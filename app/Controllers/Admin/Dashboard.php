@@ -9,6 +9,6 @@ class Dashboard extends BaseController
     public function index()
     {
         $data['title'] = 'DASBOARD';
-        return view('admin/mazer/layout-default', $data);
+        return view('admin/dashboard', $data);
     }
 }
