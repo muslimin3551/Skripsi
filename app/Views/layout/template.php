@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Trinary Master Solution</title>
+    <title>MI AL-Mubarok Landing Page</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="description" content="" />

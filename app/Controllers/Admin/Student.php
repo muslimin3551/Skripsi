@@ -3,7 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\UserModel as AdminUserModel;
+use App\Models\Admin\StudentModel as AdminStudentModel;
+use App\Models\Admin\ClassModel as AdminClassModel;
+use App\Models\Admin\StudenttypeModel as AdminStudentTypeModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Student extends BaseController
@@ -19,20 +21,10 @@ class Student extends BaseController
             return redirect()->to('/admin/login');
         } else {
             $data['title'] = 'STUDENT';
-            // $user = new AdminUserModel();
-            // $data['user'] = $user->findAll();
-            return view('admin/master_data/student/index', $data);
+            $student = new AdminStudentModel();
+            $data['student'] = $student->findAll();
+            return view('admin/student/index', $data);
         }
-    }
-    public function preview($id)
-    {
-        $student = new AdminUserModel();
-        $data['student'] = $student->where('id', $id)->first();
-
-        if (!$data['student']) {
-            throw PageNotFoundException::forPageNotFound();
-        }
-        echo view('/admin/news_detail', $data);
     }
 
     //--------------------------------------------------------------------------
@@ -45,9 +37,14 @@ class Student extends BaseController
         } else {
             $session = session();
             $data['name'] = $session->get('name');
+            $class = new AdminClassModel();
+            $data['class'] = $class->findAll();
+            $student_type = new AdminStudentTypeModel();
+            $data['student_type'] = $student_type->findAll();
             // tampilkan form create
-            $data['title'] = "ADD USER";
-            echo view('/admin/mahasiswa/create', $data);
+            $data['title'] = "ADD STUDENT";
+
+            return view('admin/student/create', $data);
         }
     }
     public function add()
@@ -56,34 +53,33 @@ class Student extends BaseController
         helper(['form']);
         //set rules validation form
         $rules = [
-            'name'          => 'required|min_length[3',
-            'email'         => 'required|min_length[6]|max_length[50]|valid_email|is_unique[mahasiswa.email]',
-            'phonenumber'   => 'required|min_length[10]|max_length[14]',
+            'nis'          => 'required|is_unique[tbl_student.nis]',
+            'name'          => 'required',
             'password'      => 'required|min_length[6]|max_length[200]',
             'confpassword'  => 'matches[password]'
         ];
 
         if ($this->validate($rules)) {
-            $model = new AdminUserModel();
+            $model = new AdminStudentModel();
             $data = [
-                'name'          => $this->request->getVar('name'),
-                'email'         => $this->request->getVar('email'),
-                'phonenumber'   => $this->request->getVar('phonenumber'),
-                'faculty'       => $this->request->getVar('faculty'),
-                'study_program' => $this->request->getVar('study_program'),
-                'concentration' => $this->request->getVar('concentration'),
-                'class'         => $this->request->getVar('class'),
-                'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
+                'nis'               => $this->request->getVar('nis'),
+                'class_id'          => $this->request->getVar('class_id'),
+                'student_type_id'   => $this->request->getVar('student_type_id'),
+                'name'              => $this->request->getVar('name'),
+                'gender'            => $this->request->getVar('gender'),
+                'address'           => $this->request->getVar('address'),
+                'brd_date'          => $this->request->getVar('brd_date'),
+                'password'          => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
             ];
             $model->save($data);
             $session = session();
-            $session->setFlashdata('msg_succes', 'your data has been added!');
+            $session->setFlashdata('msg_succes', 'data user berhasil di simpan!');
             return redirect()->to('admin/student');
         } else {
             $session = session();
             $data['name'] = $session->get('name');
             $data['validation'] = $this->validator;
-            $data['title'] = "ADD MAHASISWA";
+            $data['title'] = "ADD STUDENT";
             echo view('admin/student/create', $data);
         }
     }
@@ -99,8 +95,12 @@ class Student extends BaseController
             $session = session();
             $data['name'] = $session->get('name');
             // ambil artikel yang akan diedit
-            $student = new AdminUserModel();
+            $student = new AdminStudentModel();
             $data['student'] = $student->where('id', $id)->first();
+            $class = new AdminClassModel();
+            $data['class'] = $class->findAll();
+            $student_type = new AdminStudentTypeModel();
+            $data['student_type'] = $student_type->findAll();
 
             // lakukan validasi data mahasiswa
             $validation =  \Config\Services::validation();
@@ -112,22 +112,22 @@ class Student extends BaseController
             // jika data vlid, maka simpan ke database
             if ($isDataValid) {
                 $student->update($id, [
+                    "nis" => $this->request->getPost('nis'),
+                    "class_id" => $this->request->getPost('class_id'),
+                    "student_type_id" => $this->request->getPost('student_type_id'),
                     "name" => $this->request->getPost('name'),
-                    "nim" => $this->request->getPost('nim'),
-                    "phonenumber" => $this->request->getPost('phonenumber'),
-                    "faculty" => $this->request->getPost('faculty'),
-                    "study_program" => $this->request->getPost('study_program'),
-                    "concentration" => $this->request->getPost('concentration'),
-                    "class" => $this->request->getPost('class'),
-                    "active" => $this->request->getPost('active'),
+                    "gender" => $this->request->getPost('gender'),
+                    "address" => $this->request->getPost('address'),
+                    "brd_date" => $this->request->getPost('brd_date'),
+                    "updated_at" => date('Y-m-d hh:mm:ss'),
                 ]);
                 $session = session();
-                $session->setFlashdata('msg_succes', 'your data has been Updated!');
+                $session->setFlashdata('msg_succes', 'data  telah berhasil di update!');
                 return redirect('admin/student');
             }
 
             // tampilkan form edit
-            $data['title'] = "EDIT MAHASISWA";
+            $data['title'] = "EDIT STUDENT";
             echo view('/admin/student/edit', $data);
         }
     }
@@ -135,9 +135,9 @@ class Student extends BaseController
 
     public function delete($id)
     {
-        $student = new AdminUserModel();
+        $student = new AdminStudentModel();
         $session = session();
-        $session->setFlashdata('msg_succes', 'your data has been deleted!!');
+        $session->setFlashdata('msg_succes', 'data telah berhasil di hapus!');
         $student->delete($id);
         return redirect('admin/student');
     }

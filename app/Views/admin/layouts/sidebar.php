@@ -11,7 +11,7 @@ $uri3 = $uri[3] ?? '';
             <div class="d-flex justify-content-between">
                 <div class="logo text-center">
                     <a href="index.html"><img src="/img/logo.png" alt="Logo"></a>
-                    <p style="font-size: 14px;">MI AL-MUBARAK ADMIN PANEL</p>
+                    <p style="font-size: 14px;">MI AL-MUBARAK</p>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -30,60 +30,66 @@ $uri3 = $uri[3] ?? '';
                 </li>
                 <li class="sidebar-item <?= ($uri2 == 'payment') ? 'active' : '' ?>">
                     <a href="/admin/payment" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <i class="bi bi-credit-card-fill"></i>
                         <span>Pembayaran</span>
                     </a>
                 </li>
                 <li class="sidebar-item <?= ($uri2 == 'invoice') ? 'active' : '' ?>">
                     <a href="/admin/invoice" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <i class="bi bi-bar-chart-fill"></i>
                         <span>Tagihan</span>
                     </a>
                 </li>
-                <li class="sidebar-item <?= ($uri1 == 'student' || $uri1 == 'class' || $uri1 == 'student_type' || $uri1 == 'item') ? 'active' : '' ?> has-sub">
+                <li class="sidebar-item <?= ($uri1 == 'class' || $uri1 == 'student_type' || $uri1 == 'item' || $uri1 == 'payment_type') ? 'active' : '' ?> has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span>Master Data</span>
                     </a>
-                    <ul class="submenu <?= ($uri1 == 'student' || $uri1 == 'class' || $uri1 == 'student_type' || $uri1 == 'item') ? 'active' : '' ?>">
-                        <li class="submenu-item <?= ($uri2 == 'student') ? 'active' : '' ?>">
-                            <a href="/admin/student">Siswa</a>
-                        </li>
+                    <ul class="submenu <?= ($uri1 == 'class' || $uri1 == 'student_type' || $uri1 == 'item' || $uri1 == 'payment_type') ? 'active' : '' ?>">
                         <li class="submenu-item <?= ($uri2 == 'class') ? 'active' : '' ?>">
                             <a href="/admin/class">Kelas</a>
                         </li>
                         <li class="submenu-item <?= ($uri2 == 'student_type') ? 'active' : '' ?>">
-                            <a href="/admin/student_type">Jebis Siswa</a>
+                            <a href="/admin/student_type">Jenis Siswa</a>
                         </li>
                         <li class="submenu-item <?= ($uri2 == 'item') ? 'active' : '' ?>">
                             <a href="/admin/item">Item</a>
+                        </li>
+                        <li class="submenu-item <?= ($uri2 == 'payment_type') ? 'active' : '' ?>">
+                            <a href="/admin/payment_type">Jenis Pembayaran</a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item <?= ($uri1 == 'role' || $uri == 'role_access') ? 'active' : '' ?> has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-grid-1x2-fill"></i>
-                        <span>Rol & Akses</span>
+                        <span>Type & Hak Akses</span>
                     </a>
                     <ul class="submenu <?= ($uri1 == 'role' || $uri == 'role_access') ? 'active' : '' ?>">
                         <li class="submenu-item <?= ($uri2 == 'role') ? 'active' : '' ?>">
-                            <a href="/admin/role">Rol</a>
+                            <a href="/admin/role">Type Akses</a>
                         </li>
                         <li class="submenu-item <?= ($uri2 == 'role_access') ? 'active' : '' ?>">
-                            <a href="/admin/role_access">Akses</a>
+                            <a href="/admin/role_access">Hak Akses</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="sidebar-item <?= ($uri2 == 'user') ? 'active' : '' ?>">
                     <a href="/admin/user" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <i class="bi bi-people-fill"></i>
                         <span>User</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?= ($uri2 == 'student') ? 'active' : '' ?>">
+                    <a href="/admin/student" class='sidebar-link'>
+                        <i class="bi bi-person-badge-fill"></i>
+                        <span>Siswa</span>
                     </a>
                 </li>
                 <li class="sidebar-item <?= ($uri2 == 'layout') ? 'active' : '' ?>">
                     <a href="<?= base_url('/admin/logout') ?>" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <i class="bi bi-door-open-fill"></i>
                         <span>Logout</span>
                     </a>
                 </li>

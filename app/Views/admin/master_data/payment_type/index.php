@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Admin Menu</h3>
-                <p class="text-subtitle text-muted">Lis Data Kelas </p>
+                <p class="text-subtitle text-muted">Lis Data jenis Pembayaran </p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="admin/dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Kelas</li>
+                        <li class="breadcrumb-item active" aria-current="page">jenis Pembayaran</li>
                     </ol>
                 </nav>
             </div>
@@ -26,8 +26,8 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <p>Data kelas di bawah adalah data kelas yang ada di MI AL-Mubarok tahun ajaran berjalan!</p>
-                <a href="/admin/class/new" class="btn btn-success">Tambah Data Kelas</a>
+                <p>Jenis pembayaran adalah data yang di gunakan untuk menetukan metode apa yang id gunakan user untuk memebayarakan tagiahan!</p>
+                <a href="/admin/payment_type/new" class="btn btn-success">Tambah Data Jenis Pembayaran</a>
                 <br>
                 <br>
             </div>
@@ -36,21 +36,21 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kelas</th>
+                            <th>Nama</th>
                             <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1 ?>
-                        <?php foreach ($class as $row) { ?>
+                        <?php foreach ($payment_type as $row) { ?>
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['title'] ?></td>
                                 <td><?= $row['description'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('admin/class/' . $row['id'] . '/edit') ?>" class="btn btn-sm btn-outline-success m-1">Edit</a>
-                                    <a href="#" data-href="<?= base_url('admin/class/' . $row['id'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-sm btn-outline-danger m-1">Delete</a>
+                                    <a href="<?= base_url('admin/payment_type/' . $row['id'] . '/edit') ?>" class="btn btn-sm btn-outline-success m-1">Edit</a>
+                                    <a href="#" data-href="<?= base_url('admin/payment_type/' . $row['id'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-sm btn-outline-danger m-1">Delete</a>
                                 </td>
                             </tr>
                         <?php } ?>

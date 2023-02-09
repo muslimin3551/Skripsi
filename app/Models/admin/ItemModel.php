@@ -4,17 +4,20 @@ namespace App\Models\Admin;
 
 use CodeIgniter\Model;
 
-class RoleModel extends Model
+class ItemModel extends Model
 {
-    protected $table      = 'tbl_role';
+    protected $table      = 'tbl_item';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'title', 
         'description',
-        'created_at',
+        'rate',
+        'qty',
+        'tax',
         'updated_at', 
+        'created_at',
         'is_deleted'
     ];
 }

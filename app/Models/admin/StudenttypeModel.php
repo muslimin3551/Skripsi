@@ -4,9 +4,9 @@ namespace App\Models\Admin;
 
 use CodeIgniter\Model;
 
-class RoleModel extends Model
+class StudenttypeModel extends Model
 {
-    protected $table      = 'tbl_role';
+    protected $table      = 'tbl_student_type';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;

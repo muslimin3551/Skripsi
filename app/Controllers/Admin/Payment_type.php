@@ -3,10 +3,10 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\RoleModel as AdminRolepeModel;
+use App\Models\Admin\PaymenttypeModel as AdminPaymenttypeModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class Role extends BaseController
+class Payment_type extends BaseController
 {
     public function __construct()
     {
@@ -18,10 +18,10 @@ class Role extends BaseController
             // maka redirct ke halaman login
             return redirect()->to('/admin/login');
         } else {
-            $data['title'] = 'ROLE TYPE';
-            $role = new AdminRolepeModel();
-            $data['role'] = $role->findAll();
-            return view('admin/role_access/role/index', $data);
+            $data['title'] = 'PAYMENT TYPE';
+            $payment_type = new AdminPaymenttypeModel();
+            $data['payment_type'] = $payment_type->findAll();
+            return view('admin/master_data/payment_type/index', $data);
         }
     }
 
@@ -36,8 +36,8 @@ class Role extends BaseController
             $session = session();
             $data['name'] = $session->get('name');
             // tampilkan form create
-            $data['title'] = "ADD ROLE TYPE";
-            echo view('/admin/role_access/role/create', $data);
+            $data['title'] = "ADD PAYMENT TYPE";
+            echo view('/admin/master_data/payment_type/create', $data);
         }
     }
     public function add()
@@ -51,7 +51,7 @@ class Role extends BaseController
         ];
 
         if ($this->validate($rules)) {
-            $model = new AdminRolepeModel();
+            $model = new AdminPaymenttypeModel();
             $data = [
                 'title'          => $this->request->getVar('title'),
                 'description'         => $this->request->getVar('description'),
@@ -59,13 +59,13 @@ class Role extends BaseController
             $model->save($data);
             $session = session();
             $session->setFlashdata('msg_succes', 'data kelas berhasil di tambahkan!');
-            return redirect()->to('admin/role');
+            return redirect()->to('admin/payment_type');
         } else {
             $session = session();
             $data['name'] = $session->get('name');
             $data['validation'] = $this->validator;
-            $data['title'] = "EDIT ROLE TYPE";
-            echo view('/admin/role_access/role/create', $data);
+            $data['title'] = "EDIT PAYMENT TYPE";
+            echo view('/admin/master_data/payment_type/create', $data);
         }
     }
 
@@ -80,8 +80,8 @@ class Role extends BaseController
             $session = session();
             $data['name'] = $session->get('name');
             // ambil artikel yang akan diedit
-            $role = new AdminRolepeModel();
-            $data['role'] = $role->where('id', $id)->first();
+            $payment_type = new AdminPaymenttypeModel();
+            $data['payment_type'] = $payment_type->where('id', $id)->first();
 
             // lakukan validasi data mahasiswa
             $validation =  \Config\Services::validation();
@@ -92,28 +92,28 @@ class Role extends BaseController
             $isDataValid = $validation->withRequest($this->request)->run();
             // jika data vlid, maka simpan ke database
             if ($isDataValid) {
-                $role->update($id, [
+                $payment_type->update($id, [
                     "title" => $this->request->getPost('title'),
                     "description" => $this->request->getPost('description'),
                 ]);
                 $session = session();
                 $session->setFlashdata('msg_succes', 'your data has been Updated!');
-                return redirect('admin/role');
+                return redirect('admin/payment_type');
             }
 
             // tampilkan form edit
-            $data['title'] = "EDIT ROLE TYPE";
-            echo view('admin/role_access/role/edit', $data);
+            $data['title'] = "EDIT PAYMENT TYPE";
+            echo view('admin/master_data/payment_type/edit', $data);
         }
     }
     //--------------------------------------------------------------------------
 
     public function delete($id)
     {
-        $role = new AdminRolepeModel();
+        $class = new AdminPaymenttypeModel();
         $session = session();
         $session->setFlashdata('msg_succes', 'data berhasil di hapus!!');
-        $role->delete($id);
-        return redirect('admin/role');
+        $class->delete($id);
+        return redirect('admin/payment_type');
     }
 }

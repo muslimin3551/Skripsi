@@ -4,17 +4,17 @@ namespace App\Models\Admin;
 
 use CodeIgniter\Model;
 
-class RoleModel extends Model
+class PaymenttypeModel extends Model
 {
-    protected $table      = 'tbl_role';
+    protected $table      = 'tbl_payment_type';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'title', 
         'description',
-        'created_at',
         'updated_at', 
+        'created_at',
         'is_deleted'
     ];
 }

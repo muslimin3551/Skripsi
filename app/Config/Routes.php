@@ -8,7 +8,7 @@ $routes = Services::routes();
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
-    require SYSTEMPATH . 'Config/Routes.php';
+	require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /*
@@ -53,17 +53,90 @@ $routes->group('admin', function ($routes) {
 	$routes->get('logout', 'Admin\Login::logout');
 	// main menu
 	$routes->get('dashboard', 'Admin\Dashboard::index');
+
+
+	//user
 	$routes->get('user', 'Admin\User::index');
+	$routes->get('user/new', 'Admin\User::create');
+	$routes->post('user/add', 'Admin\User::add');
+	$routes->add('user/(:segment)/edit', 'Admin\User::edit/$1');
+	$routes->get('user/(:segment)/delete', 'Admin\User::delete/$1');
+
+
+	//payment
 	$routes->get('payment', 'Admin\Payment::index');
+	$routes->get('payment/new', 'Admin\Payment::create');
+	$routes->post('payment/add', 'Admin\Payment::add');
+	$routes->add('payment/(:segment)/edit', 'Admin\Payment::edit/$1');
+	$routes->get('payment/(:segment)/delete', 'Admin\Payment::delete/$1');
+
+	//payment
 	$routes->get('invoice', 'Admin\Invoice::index');
-	//master data
+	$routes->get('invoice/new', 'Admin\Invoice::create');
+	$routes->post('invoice/add', 'Admin\Invoice::add');
+	$routes->add('invoice/(:segment)/edit', 'Admin\Invoice::edit/$1');
+	$routes->get('invoice/(:segment)/delete', 'Admin\Invoice::delete/$1');
+
+	//student
 	$routes->get('student', 'Admin\Student::index');
+	$routes->get('student/new', 'Admin\Student::create');
+	$routes->post('student/add', 'Admin\Student::add');
+	$routes->add('student/(:segment)/edit', 'Admin\Student::edit/$1');
+	$routes->get('student/(:segment)/delete', 'Admin\Student::delete/$1');
+
+	//master data
+
+	//payment type
+	$routes->get('peyment_type', 'Admin\Payment_type::index');
+	$routes->get('peyment_type/new', 'Admin\Payment_type::create');
+	$routes->post('peyment_type/add', 'Admin\Payment_type::add');
+	$routes->add('peyment_type/(:segment)/edit', 'Admin\Payment_type::edit/$1');
+	$routes->get('peyment_type/(:segment)/delete', 'Admin\Payment_type::delete/$1');
+
+
+	//class
 	$routes->get('class', 'Admin\Student_class::index');
+	$routes->get('class/new', 'Admin\Student_class::create');
+	$routes->post('class/add', 'Admin\Student_class::add');
+	$routes->add('class/(:segment)/edit', 'Admin\Student_class::edit/$1');
+	$routes->get('class/(:segment)/delete', 'Admin\Student_class::delete/$1');
+
+
+	//student type
 	$routes->get('student_type', 'Admin\Student_type::index');
+	$routes->get('student_type/new', 'Admin\Student_type::create');
+	$routes->post('student_type/add', 'Admin\Student_type::add');
+	$routes->add('student_type/(:segment)/edit', 'Admin\Student_type::edit/$1');
+	$routes->get('student_type/(:segment)/delete', 'Admin\Student_type::delete/$1');
+
+
+	//paymenttype
+	$routes->get('payment_type', 'Admin\Payment_type::index');
+	$routes->get('payment_type/new', 'Admin\Payment_type::create');
+	$routes->post('payment_type/add', 'Admin\Payment_type::add');
+	$routes->add('payment_type/(:segment)/edit', 'Admin\Payment_type::edit/$1');
+	$routes->get('payment_type/(:segment)/delete', 'Admin\Payment_type::delete/$1');
+
+	//item
 	$routes->get('item', 'Admin\Item::index');
-	//end
+	$routes->get('item/new', 'Admin\Item::create');
+	$routes->post('item/add', 'Admin\Item::add');
+	$routes->add('item/(:segment)/edit', 'Admin\Item::edit/$1');
+	$routes->get('item/(:segment)/delete', 'Admin\Item::delete/$1');
+
+	//role
 	$routes->get('role', 'Admin\Role::index');
+	$routes->get('role/new', 'Admin\Role::create');
+	$routes->post('role/add', 'Admin\Role::add');
+	$routes->add('role/(:segment)/edit', 'Admin\Role::edit/$1');
+	$routes->get('role/(:segment)/delete', 'Admin\Role::delete/$1');
+
+
 	$routes->get('role_access', 'Admin\Access::index');
+	$routes->get('role_access/new', 'Admin\Access::create');
+	$routes->post('role_access/add', 'Admin\Access::add');
+	$routes->add('role_access/(:segment)/edit', 'Admin\Access::edit/$1');
+	$routes->get('role_access/(:segment)/delete', 'Admin\Access::delete/$1');
 });
 /*
  * --------------------------------------------------------------------
@@ -79,5 +152,5 @@ $routes->group('admin', function ($routes) {
  * needing to reload it.
  */
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
