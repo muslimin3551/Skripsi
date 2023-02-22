@@ -105,6 +105,7 @@ class Item extends BaseController
                     "rate" => $this->request->getPost('rate'),
                     "qty" => $this->request->getPost('qty'),
                     "tax" => $this->request->getPost('tax'),
+                    "updated_at" => date('Y-m-d hh:mm:ss'),
                 ]);
                 $session = session();
                 $session->setFlashdata('msg_succes', 'data berhasil di edit!');

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Rachma | @rachmadzii" />
 
-    <title>MI AL-Mubarok - Dashboard</title>
+    <title>MI AL-Mubarok - <?= $title ?></title>
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
@@ -41,8 +41,7 @@
                     </button>
                 </div>
                 <div class="d-flex align-items-center justify-item-center justify-content-end gap-4">
-                    <p>Selamat Pagi, <strong>Tiyas Dwi</strong> </p>
-                    <img src="assets/images/avatar.jpg" alt="Photo Profile" class="avatar" />
+                    <p>Selamat Datang, <strong><?= $_SESSION['name'] ?></strong> </p>
                 </div>
             </div>
         </nav>
@@ -66,6 +65,15 @@
             $(document).ready(function() {
                 $('#invoice').DataTable();
             });
+
+            function filter_invoice() {
+                var status_id = $('#status').val();
+                window.location.href = "<?= base_url('invoice?status=') ?>" + status_id + "";
+            }
+            function filter_payment() {
+                var payment_type = $('#payment_type').val();
+                window.location.href = "<?= base_url('payment?payment_type=') ?>" + payment_type + "";
+            }
         </script>
 </body>
 

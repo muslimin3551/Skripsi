@@ -38,9 +38,13 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/dashboard', 'User\Dashboard::index');
 $routes->get('/invoice', 'User\Invoice::index');
+$routes->get('invoice/detail/(:any)', 'User\Invoice::detail/$1');
 $routes->get('/payment', 'User\Payment::index');
+$routes->get('payment/detail/(:any)', 'User\Payment::detail/$1');
 $routes->get('/login', 'User\Login::index');
-$routes->get('/profile', 'User\Profile::index');
+$routes->get('logout', 'User\Login::logout');
+$routes->post('login/auth', 'User\Login::auth');
+$routes->add('/profile', 'User\Profile::index');
 $routes->get('/forgot_password', 'User\Login::forgot_password');
 
 //admin
@@ -66,7 +70,9 @@ $routes->group('admin', function ($routes) {
 	//payment
 	$routes->get('payment', 'Admin\Payment::index');
 	$routes->get('payment/new', 'Admin\Payment::create');
+	$routes->get('payment/paid/(:any)', 'Admin\Payment::paid/$1');
 	$routes->post('payment/add', 'Admin\Payment::add');
+	$routes->get('payment/detail/(:any)', 'Admin\Payment::detail/$1');
 	$routes->add('payment/(:segment)/edit', 'Admin\Payment::edit/$1');
 	$routes->get('payment/(:segment)/delete', 'Admin\Payment::delete/$1');
 
@@ -74,6 +80,7 @@ $routes->group('admin', function ($routes) {
 	$routes->get('invoice', 'Admin\Invoice::index');
 	$routes->get('invoice/new', 'Admin\Invoice::create');
 	$routes->post('invoice/add', 'Admin\Invoice::add');
+	$routes->get('invoice/detail/(:any)', 'Admin\Invoice::detail/$1');
 	$routes->add('invoice/(:segment)/edit', 'Admin\Invoice::edit/$1');
 	$routes->get('invoice/(:segment)/delete', 'Admin\Invoice::delete/$1');
 
@@ -132,11 +139,9 @@ $routes->group('admin', function ($routes) {
 	$routes->get('role/(:segment)/delete', 'Admin\Role::delete/$1');
 
 
-	$routes->get('role_access', 'Admin\Access::index');
-	$routes->get('role_access/new', 'Admin\Access::create');
-	$routes->post('role_access/add', 'Admin\Access::add');
-	$routes->add('role_access/(:segment)/edit', 'Admin\Access::edit/$1');
-	$routes->get('role_access/(:segment)/delete', 'Admin\Access::delete/$1');
+	//report
+	$routes->get('report_invoice', 'Admin\Report::invoice');
+	$routes->get('report_payment', 'Admin\Report::payment');
 });
 /*
  * --------------------------------------------------------------------

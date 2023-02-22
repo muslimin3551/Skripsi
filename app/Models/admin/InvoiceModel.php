@@ -16,6 +16,7 @@ class InvoiceModel extends Model
         'invoice_number',
         'invoice_status',
         'start_date',
+        'description',
         'due_date',
         'subtotal',
         'total_tax',

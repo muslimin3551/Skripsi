@@ -4,22 +4,17 @@ namespace App\Models\Admin;
 
 use CodeIgniter\Model;
 
-class ItemableModel extends Model
+class InvoiceStatusModel extends Model
 {
-    protected $table      = 'tbl_itemable';
+    protected $table      = 'tbl_invoice_status';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'invoice_id', 
-        'item_id',
-        'title',
+        'title', 
         'description',
-        'rate',
-        'qty',
-        'tax',
-        'created_at',
         'updated_at', 
+        'created_at',
         'is_deleted'
     ];
 }

@@ -3,8 +3,11 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\UserModel as AdminUserModel;
+use App\Models\Admin\PaymentModel as AdminPaymentModel;
+use App\Models\Admin\InvoiceModel as AdminInvoiceModel;
+use App\Models\Admin\PaymenttypeModel as AdminPaymenttypeModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\Files\File;
 
 class Payment extends BaseController
 {
@@ -19,25 +22,27 @@ class Payment extends BaseController
             return redirect()->to('/admin/login');
         } else {
             $data['title'] = 'PAYMENT';
-            // $user = new AdminUserModel();
-            // $data['user'] = $user->findAll();
+            $payment = new AdminPaymentModel();
+            $data['payment'] = $payment->findAll();
             return view('admin/payment/index', $data);
         }
     }
-    public function preview($id)
+    public function detail($id)
     {
-        $student = new AdminUserModel();
-        $data['student'] = $student->where('id', $id)->first();
-
-        if (!$data['student']) {
+        $payment = new AdminPaymentModel();
+        $invoice = new AdminInvoiceModel();
+        $data['invoice'] = $invoice->where('id', $id)->first();
+        $data['payment'] = $payment->where('invoice_id', $id)->first();
+        $data['title'] = 'PAYMENT DETAIL';
+        if (!$data['payment']) {
             throw PageNotFoundException::forPageNotFound();
         }
-        echo view('/admin/news_detail', $data);
+        echo view('/admin/payment/detail', $data);
     }
 
     //--------------------------------------------------------------------------
 
-    public function create()
+    public function paid($id)
     {
         if (!session()->get('admin_logged_in')) {
             // maka redirct ke halaman login
@@ -46,8 +51,12 @@ class Payment extends BaseController
             $session = session();
             $data['name'] = $session->get('name');
             // tampilkan form create
-            $data['title'] = "ADD USER";
-            echo view('/admin/mahasiswa/create', $data);
+            $invoice = new AdminInvoiceModel();
+            $data['invoice'] = $invoice->where('id', $id)->first();
+            $payment_type = new AdminPaymenttypeModel();
+            $data['payment_type'] = $payment_type->findAll();
+            $data['title'] = "FORM PEMBAYARAN";
+            echo view('/admin/payment/paid', $data);
         }
     }
     public function add()
@@ -56,89 +65,81 @@ class Payment extends BaseController
         helper(['form']);
         //set rules validation form
         $rules = [
-            'name'          => 'required|min_length[3',
-            'email'         => 'required|min_length[6]|max_length[50]|valid_email|is_unique[mahasiswa.email]',
-            'phonenumber'   => 'required|min_length[10]|max_length[14]',
-            'password'      => 'required|min_length[6]|max_length[200]',
-            'confpassword'  => 'matches[password]'
+            'invoice_id'          => 'required',
+            'total'          => 'required',
+            'file' => [
+                'label' => 'Image File',
+                'rules' => [
+                    'uploaded[file]',
+                    'is_image[file]',
+                    'mime_in[file,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
+                ],
+            ],
         ];
-
+        $id = $this->request->getVar('invoice_id');
+        $total = $this->request->getVar('total');
+        $status = 0;
+        $invoice = new AdminInvoiceModel();
+        $invoice_data = $invoice->where('id', $id)->first();
+        if ($total < $invoice_data['total']) {
+            $status = 2;
+        } else {
+            $status = 3;
+        }
+        if ($this->request->getFile('file')) {
+            $dataBerkas = $this->request->getFile('file');
+            $fileName = $dataBerkas->getRandomName();
+        } else {
+            $fileName = '';
+        }
         if ($this->validate($rules)) {
-            $model = new AdminUserModel();
+            $model = new AdminPaymentModel();
             $data = [
-                'name'          => $this->request->getVar('name'),
-                'email'         => $this->request->getVar('email'),
-                'phonenumber'   => $this->request->getVar('phonenumber'),
-                'faculty'       => $this->request->getVar('faculty'),
-                'study_program' => $this->request->getVar('study_program'),
-                'concentration' => $this->request->getVar('concentration'),
-                'class'         => $this->request->getVar('class'),
-                'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
+                'invoice_id'        => $this->request->getVar('invoice_id'),
+                'payment_type_id'   => $this->request->getVar('payment_type_id'),
+                'total'             => $this->request->getVar('total'),
+                'file'              => $fileName,
+                'note'              => $this->request->getVar('note'),
             ];
             $model->save($data);
+            if ($this->request->getFile('file')) {
+                $dataBerkas->move('uploads', $fileName);
+            }
+            $invoice->update($id, [
+                "invoice_status" => $status,
+                "updated_at" => date('Y-m-d hh:mm:ss'),
+            ]);
             $session = session();
-            $session->setFlashdata('msg_succes', 'your data has been added!');
-            return redirect()->to('admin/student');
+            $session->setFlashdata('msg_succes', 'data pembayaran berhasil di tambahkan!');
+            return redirect()->to('admin/invoice/detail/' . $id);
         } else {
+            var_dump($fileName);
             $session = session();
             $data['name'] = $session->get('name');
             $data['validation'] = $this->validator;
-            $data['title'] = "ADD MAHASISWA";
-            echo view('admin/student/create', $data);
+            $data['invoice'] = $invoice->where('id', $id)->first();
+            $payment_type = new AdminPaymenttypeModel();
+            $data['payment_type'] = $payment_type->findAll();
+            $data['title'] = "FORM PEMBAYARAN";
+            echo view('/admin/payment/paid', $data);
         }
     }
 
     //--------------------------------------------------------------------------
 
-    public function edit($id)
-    {
-        if (!session()->get('admin_logged_in')) {
-            // maka redirct ke halaman login
-            return redirect()->to('/admin/login');
-        } else {
-            $session = session();
-            $data['name'] = $session->get('name');
-            // ambil artikel yang akan diedit
-            $student = new AdminUserModel();
-            $data['student'] = $student->where('id', $id)->first();
-
-            // lakukan validasi data mahasiswa
-            $validation =  \Config\Services::validation();
-            $validation->setRules([
-                'id' => 'required',
-                'name' => 'required'
-            ]);
-            $isDataValid = $validation->withRequest($this->request)->run();
-            // jika data vlid, maka simpan ke database
-            if ($isDataValid) {
-                $student->update($id, [
-                    "name" => $this->request->getPost('name'),
-                    "nim" => $this->request->getPost('nim'),
-                    "phonenumber" => $this->request->getPost('phonenumber'),
-                    "faculty" => $this->request->getPost('faculty'),
-                    "study_program" => $this->request->getPost('study_program'),
-                    "concentration" => $this->request->getPost('concentration'),
-                    "class" => $this->request->getPost('class'),
-                    "active" => $this->request->getPost('active'),
-                ]);
-                $session = session();
-                $session->setFlashdata('msg_succes', 'your data has been Updated!');
-                return redirect('admin/student');
-            }
-
-            // tampilkan form edit
-            $data['title'] = "EDIT MAHASISWA";
-            echo view('/admin/student/edit', $data);
-        }
-    }
-    //--------------------------------------------------------------------------
 
     public function delete($id)
     {
-        $student = new AdminUserModel();
+        $payment = new AdminPaymentModel();
+        $invoice = new AdminInvoiceModel();
+        $data_payment = $payment->where('id', $id)->first();
+        $invoice->update($data_payment['invoice_id'], [
+            "invoice_status" => 1,
+            "updated_at" => date('Y-m-d hh:mm:ss'),
+        ]);
         $session = session();
-        $session->setFlashdata('msg_succes', 'your data has been deleted!!');
-        $student->delete($id);
-        return redirect('admin/student');
+        $session->setFlashdata('msg_succes', 'data telah berhasil di hapus!');
+        $payment->delete($id);
+        return redirect('admin/payment');
     }
 }

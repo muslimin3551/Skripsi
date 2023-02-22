@@ -95,6 +95,7 @@ class Student_class extends BaseController
                 $class->update($id, [
                     "title" => $this->request->getPost('title'),
                     "description" => $this->request->getPost('description'),
+                    "updated_at" => date('Y-m-d hh:mm:ss'),
                 ]);
                 $session = session();
                 $session->setFlashdata('msg_succes', 'data anda berhasil di update!');

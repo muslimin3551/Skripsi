@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/admin/assets/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
     <?= $this->renderSection('styles') ?>
     <link rel="shortcut icon" href="/admin/assets/images/favicon.svg" type="image/x-icon">
 </head>
@@ -38,7 +40,7 @@
             <!-- Content -->
             <?= $this->renderSection('content') ?>
             <!-- End Content -->
-            
+
             <!-- Footer -->
             <?= $this->include('admin/layouts/footer') ?>
             <!-- End Footer -->
@@ -51,14 +53,94 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
     <?= $this->renderSection('javascript') ?>
 
     <script src="/admin/assets/js/main.js"></script>
 </body>
 <script>
-    $(document).ready(function () {
-    $('#user').DataTable();
-});
+    $(document).ready(function() {
+        $('#user').DataTable();
+        $(document).ready(function() {
+            $('#report_invoice').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    });
+
+    function addForm() {
+        // var addrow = '<div class="form-group baru-data">\
+        //                     <div class=" form-group">\
+        //                         <label for="title">Item</label>\
+        //                         <input type="text" name="title" class="form-control" placeholder="Item " required>\
+        //                     </div>\
+        //                     <div class="form-group">\
+        //                         <label for="title">Keterangan</label>\
+        //                         <textarea class="form-control" id="description_item" name="description_item" rows="3" placeholder="Keterangan "></textarea>\
+        //                     </div>\
+        //                     <div class=" form-group">\
+        //                         <label for="title">Jumlah</label>\
+        //                         <input type="number" min="0"  name="qty" id="qty" class="form-control" placeholder="Jumlah " required>\
+        //                     </div>\
+        //                     <div class=" form-group">\
+        //                         <label for="title">Harga</label>\
+        //                         <input type="number" min="0"  name="rate" id="rate" class="form-control" placeholder="Harga " required>\
+        //                     </div>\
+        //                     <div class="button-group">\
+        //                         <button type="button" class="btn btn-success btn-tambah">tambah</button>\
+        //                         <button type="button" class="btn btn-danger btn-hapus" style="display:none;">hapus</button>\
+        //                     </div>\
+        //                 </div>'
+        // $("#dynamic_form").append(addrow);
+    }
+
+    $("#dynamic_form").on("click", ".btn-tambah", function() {
+        // addForm()
+        // $(this).css("display", "none")
+        // var valtes = $(this).parent().find(".btn-hapus").css("display", "");
+        var qty = $('#qty').val()
+        var rate = $('#rate').val()
+        var total = (qty * rate)
+        $('#total').val(total);
+    })
+
+    $("#dynamic_form").on("click", ".btn-hapus", function() {
+        // $(this).parent().parent('.baru-data').remove();
+        // var bykrow = $(".baru-data").length;
+        // if (bykrow == 1) {
+        //     $(".btn-hapus").css("display", "none")
+        //     $(".btn-tambah").css("display", "");
+        // } else {
+        //     $('.baru-data').last().find('.btn-tambah').css("display", "");
+        // }
+        var qty = $('#qty').val()
+        var rate = $('#rate').val()
+        var total = (qty * rate)
+        $('#total').val(total);
+    });
+
+    $('.btn-simpan').on('click', function() {
+        $('#dynamic_form').find('input[type="text"], input[type="number"], select, textarea').each(function() {
+            if ($(this).val() == "") {
+                event.preventDefault()
+                $(this).css('border-color', 'red');
+
+                $(this).on('focus', function() {
+                    $(this).css('border-color', '#ccc');
+                });
+            }
+        })
+    })
 </script>
+
 </html>

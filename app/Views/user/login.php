@@ -22,12 +22,12 @@
                         <br>
                         <br>
                         <h4 class="mb-5">Masuk Ke akun anda!</h4>
-                        <!-- <?php if (session()->getFlashdata('msg')) : ?>
+                        <?php if (session()->getFlashdata('msg')) : ?>
                             <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
                         <?php endif; ?>
                         <?php if (session()->getFlashdata('msg_succes')) : ?>
                             <div class="alert alert-success"><?= session()->getFlashdata('msg_succes') ?></div>
-                        <?php endif; ?> -->
+                        <?php endif; ?>
                         <form action="login/auth" method="post">
                             <div class="form-outline mb-4 text-left">
                                 <span class="badge badge-secondary">NIS</span>

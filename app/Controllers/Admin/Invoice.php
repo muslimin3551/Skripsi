@@ -3,7 +3,10 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\UserModel as AdminUserModel;
+use App\Models\Admin\StudentModel as AdminStudentModel;
+use App\Models\Admin\InvoiceModel as AdminInvoiceModel;
+use App\Models\Admin\ItemAbleModel as AdminItemAbleModel;
+use App\Models\Admin\ItemModel as AdminitemModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Invoice extends BaseController
@@ -19,20 +22,22 @@ class Invoice extends BaseController
             return redirect()->to('/admin/login');
         } else {
             $data['title'] = 'INVOICE';
-            // $user = new AdminUserModel();
-            // $data['user'] = $user->findAll();
+            $invoice = new AdminInvoiceModel();
+            $data['invoice'] = $invoice->findAll();
             return view('admin/invoice/index', $data);
         }
     }
-    public function preview($id)
+    public function detail($id)
     {
-        $student = new AdminUserModel();
-        $data['student'] = $student->where('id', $id)->first();
-
-        if (!$data['student']) {
+        $invoice = new AdminInvoiceModel();
+        $itemable = new AdminItemAbleModel();
+        $data['invoice'] = $invoice->where('id', $id)->first();
+        $data['itemable'] = $itemable->where('invoice_id', $id)->findAll();
+        $data['title'] = 'DETAIL INVOICE';
+        if (!$data['invoice']) {
             throw PageNotFoundException::forPageNotFound();
         }
-        echo view('/admin/news_detail', $data);
+        echo view('/admin/invoice/detail', $data);
     }
 
     //--------------------------------------------------------------------------
@@ -46,8 +51,14 @@ class Invoice extends BaseController
             $session = session();
             $data['name'] = $session->get('name');
             // tampilkan form create
-            $data['title'] = "ADD USER";
-            echo view('/admin/mahasiswa/create', $data);
+
+            $student = new AdminStudentModel();
+            $data['student'] = $student->findAll();
+            $invoice = new AdminInvoiceModel();
+            $data['invoice'] = $invoice->orderBy('id', 'desc')->first();
+            $data['invoice_number'] = $data['invoice']['invoice_number'] + 1;
+            $data['title'] = "ADD INVOICE";
+            echo view('/admin/invoice/create', $data);
         }
     }
     public function add()
@@ -56,35 +67,50 @@ class Invoice extends BaseController
         helper(['form']);
         //set rules validation form
         $rules = [
-            'name'          => 'required|min_length[3',
-            'email'         => 'required|min_length[6]|max_length[50]|valid_email|is_unique[mahasiswa.email]',
-            'phonenumber'   => 'required|min_length[10]|max_length[14]',
-            'password'      => 'required|min_length[6]|max_length[200]',
-            'confpassword'  => 'matches[password]'
+            'invoice_number'          => 'required',
+            'student_id'         => 'required',
         ];
 
         if ($this->validate($rules)) {
-            $model = new AdminUserModel();
+            $model = new AdminInvoiceModel();
             $data = [
-                'name'          => $this->request->getVar('name'),
-                'email'         => $this->request->getVar('email'),
-                'phonenumber'   => $this->request->getVar('phonenumber'),
-                'faculty'       => $this->request->getVar('faculty'),
-                'study_program' => $this->request->getVar('study_program'),
-                'concentration' => $this->request->getVar('concentration'),
-                'class'         => $this->request->getVar('class'),
-                'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
+                'student_id'                => $this->request->getVar('student_id'),
+                'invoice_number'            => $this->request->getVar('invoice_number'),
+                'invoice_status'            => 1,
+                'description'               => $this->request->getVar('description'),
+                'start_date'                => $this->request->getVar('start_date'),
+                'due_date'                  => $this->request->getVar('due_date'),
+                'subtotal'                  => $this->request->getVar('total'),
+                'total'                     => $this->request->getVar('total'),
+                'admin_note'                => $this->request->getVar('admin_note'),
             ];
             $model->save($data);
+            $invoice_save = $model->orderBy('id', 'desc')->first();
+            if ($invoice_save) {
+                $item = new AdminItemAbleModel();
+                $data_item = [
+                    'invoice_id'            => $invoice_save['id'],
+                    'item_id'               => 1,
+                    'description'           => $this->request->getVar('description_item'),
+                    'qty'                   => $this->request->getVar('qty'),
+                    'rate'                  => $this->request->getVar('rate'),
+                ];
+                $invoice_save = $item->save($data_item);
+            }
             $session = session();
             $session->setFlashdata('msg_succes', 'your data has been added!');
-            return redirect()->to('admin/student');
+            return redirect()->to('admin/invoice');
         } else {
             $session = session();
             $data['name'] = $session->get('name');
             $data['validation'] = $this->validator;
-            $data['title'] = "ADD MAHASISWA";
-            echo view('admin/student/create', $data);
+            $student = new AdminStudentModel();
+            $data['student'] = $student->findAll();
+            $invoice = new AdminInvoiceModel();
+            $data['invoice'] = $invoice->orderBy('id', 'desc')->first();
+            $data['invoice_number'] = $data['invoice']['invoice_number'] + 1;
+            $data['title'] = "ADD INVOICE";
+            echo view('/admin/invoice/create', $data);
         }
     }
 
@@ -135,10 +161,10 @@ class Invoice extends BaseController
 
     public function delete($id)
     {
-        $student = new AdminUserModel();
+        $invoice = new AdminInvoiceModel();
         $session = session();
         $session->setFlashdata('msg_succes', 'your data has been deleted!!');
-        $student->delete($id);
-        return redirect('admin/student');
+        $invoice->delete($id);
+        return redirect('admin/invoice');
     }
 }

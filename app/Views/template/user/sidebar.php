@@ -29,7 +29,7 @@
         </div>
         <div class="menu">
             <p>Lainnya</p>
-            <a href="#" class="item-menu">
+            <a href="<?= base_url('logout') ?>" class="item-menu">
                 <i class="icon ic-logout"></i>
                 Keluar
             </a>

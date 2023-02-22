@@ -95,6 +95,7 @@ class Payment_type extends BaseController
                 $payment_type->update($id, [
                     "title" => $this->request->getPost('title'),
                     "description" => $this->request->getPost('description'),
+                    "updated_at" => date('Y-m-d hh:mm:ss'),
                 ]);
                 $session = session();
                 $session->setFlashdata('msg_succes', 'your data has been Updated!');

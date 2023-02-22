@@ -59,26 +59,41 @@
 <!-- Our Team -->
 <section class="project section-padding" id="kegiatan">
 	<div class="container">
+		<h2 class="mb-4 text-center" data-aos="fade-up">
+			Ektrakulikuler Sekolah
+		</h2>
 		<div class="row" data-aos="fade-up" data-aos-delay="200">
 			<div class="col-md-6" style="padding: 5%;">
-				<h3 style="color: #0066BB;">TIM BERKAMPUAN LENGKAP</h3>
-				<h1>Dipimpin Oleh Praktisi Berpengalaman</h1>
-				<p style="color: #000000;">Tim kami terdiri dari beberapa ahli yang dapat
-					memberikan solusi di bidang Network Management
-					dan Software Development.</p>
+				<h1>PARMUKA</h1>
+				<p style="color: #000000;">GerakanPramuka (Kwarnas) bertujuan mendidik anak-anak dan pemuda Indonesia dengan prinsip-Prinsip Dasar dan metode kepramukaan yang pelaksanaannya disesuaikan dengan keadaan, kepentingan dan perkembangan bangsa dan masyarakat Indonesia.</p>
 			</div>
 			<div class="col-md-6">
-				<img src="landing/images/project/project-image01.jpg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
+				<img src="img/pramuka.jpeg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
 			</div>
 		</div>
 		<div class="row" data-aos="fade-up" data-aos-delay="200">
-			<div class="col-md-6"><img src="landing/images/project/project-image02.jpg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
+			<div class="col-md-6 text-right"><img src="img/drumbank.jpeg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
 			</div>
 			<div class="col-md-6" style="padding: 5%;">
-				<h3 style="color: #0066BB;">BERKOLABORASI DENGAN FREELANCE</h3>
-				<h1>Disupport oleh banyak Developer</h1>
-				<p style="color: #000000;">Kami berkerjasama dengan para developer
-					dari berbagai bidang bisnis.</p>
+				<h1>DRUM BAND</h1>
+				<p style="color: #000000;">Kegiatan drum band yang dilaksanakan di sekolah merupakan kegiatan kegiatan pendidikan diluar jam mata pelajaran yang bertujuan untuk mengembangkan bakat dan minat siswa, mengembangkan potensi yang dimiliki peserta didik. Kegiatan ekstrakulikuler drum band dapat membentuk disiplin peserta didik.</p>
+			</div>
+		</div>
+		<div class="row" data-aos="fade-up" data-aos-delay="200">
+			<div class="col-md-6" style="padding: 5%;">
+				<h1>MARAWIS</h1>
+				<p style="color: #000000;">Ektrakurikuler Marawis adalah salah satu jenis “band tepuk” dengan perkusi sebagai alat musik utamanya. Musik ini merupakan kolaborasi antara kesenian Timur Tengah dan Betawi, dan memiliki unsur keagamaan yang kental. Itu tercermin dari berbagai lirik lagu yang dibawakan yang merupakan pujian dan kecintaan kepada Sang Pencipta.</p>
+			</div>
+			<div class="col-md-6">
+				<img src="img/marawis.jpeg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
+			</div>
+		</div>
+		<div class="row" data-aos="fade-up" data-aos-delay="200">
+			<div class="col-md-6 text-right"><img src="img/tilawah.jpeg" class="img-fluid" style="border-radius: 5px;" alt="project image" />
+			</div>
+			<div class="col-md-6" style="padding: 5%;">
+				<h1>TILAWAH</h1>
+				<p style="color: #000000;">Ekstrakurikuler Tilawah Al Qur’an merupakan salah satu kegiatan yang diperuntukkan bagi siswa yang ingin belajar membaca Al Quran dengan Al-Qur’an. Kegiatan ini juga untuk meningkatkan kompetensi siswa serta bakat dan kemampuan siswa dalam melantunkan ayat-ayat suci Al-Qur`an, dengan benar dan suara yang indah.</p>
 			</div>
 		</div>
 	</div>

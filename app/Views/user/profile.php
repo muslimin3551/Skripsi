@@ -18,45 +18,56 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="text-center">
-                                <img src="assets/images/avatar.jpg" class="rounded" alt="img avatar" width="100px" height="100px">
+                        <?php if (session()->getFlashdata('msg_succes')) : ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <?= session()->getFlashdata('msg_succes') ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                        </div>
+                        <?php endif; ?>
+                        <?php if (isset($validation)) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?= $validation->listErrors() ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
                         <div class="col-md-10">
                             <p></p>
                             <br>
-                            <button class="btn btn-success">Ubah Password</button>
+                            <a class="btn btn-success">Ubah Password</a>
                         </div>
                     </div>
                     <br>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-outline mb-4 text-left">
-                            <span class="badge text-bg-secondary">Nama</span>
-                                <input type="text" name="nama" id="nama" value="Tyas dwi" class="form-control form-control-lg"/>
+                    <form action="" method="post" id="text-editor">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-outline mb-4 text-left">
+                                    <span class="badge text-bg-secondary">Nama</span>
+                                    <input type="text" name="name" id="name" value="<?= $student['name'] ?>" class="form-control form-control-lg" />
+                                </div>
+                                <div class="form-outline mb-4 text-left">
+                                    <span class="badge text-bg-secondary">Tanggal Lahir</span>
+                                    <input type="date" name="brd_date" id="brd_date" value="<?= $student['brd_date'] ?>" class="form-control form-control-lg" />
+                                </div>
                             </div>
-                            <div class="form-outline mb-4 text-left">
-                                <span class="badge text-bg-secondary">Tanggal Lahir</span>
-                                <input type="text" name="birth_date" id="birth_date" value="03-06-2002" class="form-control form-control-lg"/>
+                            <div class="col-md-6">
+                                <div class="form-outline mb-4 text-left">
+                                    <span class="badge text-bg-secondary">NIS</span>
+                                    <input type="text" name="nis" id="nis" value="<?= $student['nis'] ?>" class="form-control form-control-lg" readonly />
+                                </div>
+                                <div class="form-outline mb-4 text-left">
+                                    <span class="badge text-bg-secondary">Alamat</span>
+                                    <textarea class="form-control" id="address" name="address" value="<?= $student['address'] ?>" rows="3" placeholder="Alamat"><?= $student['address'] ?></textarea>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-outline mb-4 text-left">
-                                <span class="badge text-bg-secondary">NIS</span>
-                                <input type="text" name="nis" id="nis" value="1112233" class="form-control form-control-lg" readonly/>
-                            </div>
-                            <div class="form-outline mb-4 text-left">
-                                <span class="badge text-bg-secondary">Nomor Telepon</span>
-                                <input type="text" name="phone" id="phone" value="0889263728736" class="form-control form-control-lg"/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-success">Simpan Perubahan</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

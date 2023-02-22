@@ -60,26 +60,33 @@ $uri3 = $uri[3] ?? '';
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item <?= ($uri1 == 'role' || $uri == 'role_access') ? 'active' : '' ?> has-sub">
+                <li class="sidebar-item <?= ($uri1 == 'role' || $uri == 'user') ? 'active' : '' ?> has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-grid-1x2-fill"></i>
-                        <span>Type & Hak Akses</span>
-                    </a>
-                    <ul class="submenu <?= ($uri1 == 'role' || $uri == 'role_access') ? 'active' : '' ?>">
-                        <li class="submenu-item <?= ($uri2 == 'role') ? 'active' : '' ?>">
-                            <a href="/admin/role">Type Akses</a>
-                        </li>
-                        <li class="submenu-item <?= ($uri2 == 'role_access') ? 'active' : '' ?>">
-                            <a href="/admin/role_access">Hak Akses</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item <?= ($uri2 == 'user') ? 'active' : '' ?>">
-                    <a href="/admin/user" class='sidebar-link'>
                         <i class="bi bi-people-fill"></i>
                         <span>User</span>
                     </a>
+                    <ul class="submenu <?= ($uri1 == 'role' || $uri == 'user') ? 'active' : '' ?>">
+                        <li class="submenu-item <?= ($uri2 == 'user') ? 'active' : '' ?>">
+                            <a href="/admin/user">User</a>
+                        </li>
+                        <li class="submenu-item <?= ($uri2 == 'role') ? 'active' : '' ?>">
+                            <a href="/admin/role">Jenis Akses User</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item <?= ($uri1 == 'report_invoice' || $uri == 'report_payment') ? 'active' : '' ?> has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-pie-chart-fill"></i>
+                        <span>Laporan</span>
+                    </a>
+                    <ul class="submenu <?= ($uri1 == 'report_invoice' || $uri == 'report_payment') ? 'active' : '' ?>">
+                        <li class="submenu-item <?= ($uri2 == 'report_invoice') ? 'active' : '' ?>">
+                            <a href="/admin/report_invoice">Laporan Tagihan</a>
+                        </li>
+                        <li class="submenu-item <?= ($uri2 == 'report_payment') ? 'active' : '' ?>">
+                            <a href="/admin/report_payment">Laporan Pembayaran</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-item <?= ($uri2 == 'student') ? 'active' : '' ?>">
                     <a href="/admin/student" class='sidebar-link'>
