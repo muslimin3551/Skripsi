@@ -19,6 +19,7 @@ class UserModel extends Model
         'address', 
         'brd_date', 
         'password', 
+        'token', 
         'created_at', 
         'updated_at', 
         'is_deleted'

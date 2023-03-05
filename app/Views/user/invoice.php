@@ -28,15 +28,12 @@
                         <div class="col-md-4">
                             <select class="form-select" id="status" aria-label="Default select example" onchange="filter_invoice()">
                                 <option value="" selected>Filter Status</option>
-                                <option value="1" <?php if ($status_selected == 1) {
-                                                        echo 'selected';
-                                                    } ?>>Lunas</option>
-                                <option value="2" <?php if ($status_selected == 2) {
-                                                        echo 'selected';
-                                                    } ?>>Belum Lunas</option>
                                 <option value="3" <?php if ($status_selected == 3) {
                                                         echo 'selected';
-                                                    } ?>>Pembayaran Partial</option>
+                                                    } ?>>Lunas</option>
+                                <option value="1" <?php if ($status_selected == 1) {
+                                                        echo 'selected';
+                                                    } ?>>Belum Lunas</option>
                             </select>
                         </div>
                     </div>
@@ -47,6 +44,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nomor Tagihan</th>
+                                <th>Status Tagihan</th>
                                 <th>Nama Siswa</th>
                                 <th>Tanggal Tagihan</th>
                                 <th>Tanggal Jatuh Tempo</th>
@@ -61,6 +59,7 @@
                                     <td>
                                         <a href="<?= site_url('invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
                                     </td>
+                                    <td><?= get_status_pembayaran($row['invoice_status']) ?></td>
                                     <td><?= get_student_name($row['student_id']) ?></td>
                                     <td><?= $row['start_date'] ?></td>
                                     <td><?= $row['due_date'] ?></td>

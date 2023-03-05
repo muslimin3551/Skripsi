@@ -21,7 +21,7 @@
                         <img src="<?= base_url('img/logo.png') ?>" alt="global institute">
                         <br>
                         <br>
-                        <h4 class="mb-5">Masukan NiS Anda!</h4>
+                        <h4 class="mb-5">Masukan Password Baru Anda!</h4>
                         <?php if (isset($validation)) : ?>
                             <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
                         <?php endif; ?>
@@ -31,11 +31,16 @@
                         <?php if (session()->getFlashdata('msg_succes')) : ?>
                             <div class="alert alert-success"><?= session()->getFlashdata('msg_succes') ?></div>
                         <?php endif; ?>
-                        <form action="forgot" method="post">
+                        <form action="reset" method="post">
                             <div class="form-outline mb-4 text-left">
-                                <span class="badge badge-secondary">NIS</span>
-                                <input type="text" name="nis" id="nis" class="form-control form-control-lg"  />
+                                <span class="badge badge-secondary">Password</span>
+                                <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Masukan Password anda" />
                             </div>
+                            <div class="form-outline mb-4 text-left">
+                                <span class="badge badge-secondary">Konfirmasi Password</span>
+                                <input type="password" name="confm_password" id="confm_password" class="form-control form-control-lg" placeholder="Konfirmasi password anda" />
+                            </div>
+
                             <button class="btn btn-success btn-lg btn-block" style="background-color: #018249;" type="submit">Atur Ulang</button>
                         </form>
                     </div>

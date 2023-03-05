@@ -47,7 +47,6 @@
                                 <td><?= get_payement_type($row['payment_type_id']) ?></td>
                                 <td>Rp <?= $row['total'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('admin/payment/' . $row['id'] . '/edit') ?>" class="btn btn-sm btn-outline-success m-1">Edit</a>
                                     <a href="#" data-href="<?= base_url('admin/payment/' . $row['id'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-sm btn-outline-danger m-1">Delete</a>
                                 </td>
                             </tr>

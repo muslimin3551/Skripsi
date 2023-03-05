@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Admin\PaymentModel as AdminPaymentModel;
 use App\Models\Admin\InvoiceModel as AdminInvoiceModel;
 use App\Models\Admin\PaymenttypeModel as AdminPaymenttypeModel;
+use App\Models\Admin\ItemModel as AdminitemModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Files\File;
 
@@ -66,15 +67,7 @@ class Payment extends BaseController
         //set rules validation form
         $rules = [
             'invoice_id'          => 'required',
-            'total'          => 'required',
-            'file' => [
-                'label' => 'Image File',
-                'rules' => [
-                    'uploaded[file]',
-                    'is_image[file]',
-                    'mime_in[file,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
-                ],
-            ],
+            'total'          => 'required'
         ];
         $id = $this->request->getVar('invoice_id');
         $total = $this->request->getVar('total');
@@ -86,8 +79,8 @@ class Payment extends BaseController
         } else {
             $status = 3;
         }
-        if ($this->request->getFile('file')) {
-            $dataBerkas = $this->request->getFile('file');
+        $dataBerkas = $this->request->getFile('file');
+        if ($dataBerkas->getName() != '') {
             $fileName = $dataBerkas->getRandomName();
         } else {
             $fileName = '';
@@ -102,7 +95,7 @@ class Payment extends BaseController
                 'note'              => $this->request->getVar('note'),
             ];
             $model->save($data);
-            if ($this->request->getFile('file')) {
+            if ($dataBerkas->getName() != '') {
                 $dataBerkas->move('uploads', $fileName);
             }
             $invoice->update($id, [
@@ -113,13 +106,14 @@ class Payment extends BaseController
             $session->setFlashdata('msg_succes', 'data pembayaran berhasil di tambahkan!');
             return redirect()->to('admin/invoice/detail/' . $id);
         } else {
-            var_dump($fileName);
             $session = session();
             $data['name'] = $session->get('name');
             $data['validation'] = $this->validator;
             $data['invoice'] = $invoice->where('id', $id)->first();
             $payment_type = new AdminPaymenttypeModel();
+            $item = new AdminitemModel();
             $data['payment_type'] = $payment_type->findAll();
+            $data['item'] = $item->findAll();
             $data['title'] = "FORM PEMBAYARAN";
             echo view('/admin/payment/paid', $data);
         }

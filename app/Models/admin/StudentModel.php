@@ -19,6 +19,7 @@ class StudentModel extends Model
         'address',
         'brd_date',
         'password',
+        'token',
         'updated_at', 
         'created_at',
         'is_deleted'

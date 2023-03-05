@@ -26,14 +26,14 @@
                             <h5>List Data Tagihan</h5>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-select" id="payment_type" aria-label="Default select example" onchange="filter_payment()">
+                            <!-- <select class="form-select" id="payment_type" aria-label="Default select example" onchange="filter_payment()">
                                 <option value="" selected>Filter Jenis Pembayaran</option>
                                 <?php foreach ($payment_type as $item) { ?>
                                     <option value="<?= $item['id'] ?>" <?php if ($payment_type_selected == $item['id']) {
                                                                             echo 'selected';
                                                                         } ?>><?= $item['title'] ?></option>
                                 <?php } ?>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                     <hr>

@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Tagihan</label>
-                                <input type="text" name="description"  class="form-control" placeholder="Tagihan" required>
+                                <input type="text" name="description" class="form-control" placeholder="Tagihan" required>
                             </div>
                             <div class="form-group">
                                 <label for="title">Siswa</label>
@@ -73,9 +73,16 @@
                             <hr>
                             <div class="row" id="dynamic_form">
                                 <div class="form-group baru-data">
+                                    <input type="hidden" name="item_id" id="item_id">
+                                    <input type="hidden" name="title" id="title">
                                     <div class=" form-group">
                                         <label for="title">Item</label>
-                                        <input type="text" name="title" class="form-control" placeholder="Item " required>
+                                        <select class="form-select pilih" name="item" id="item" aria-label="Default select example" required>
+                                            <option value="">Pilih Item</option>
+                                            <?php foreach ($items as $row) { ?>
+                                                <option value="<?= $row['id'] . ',' . $row['title'] . ',' . $row['description'] . ',' . $row['qty'] . ',' . $row['rate'] ?>"><?= $row['title'] ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="title">Keterangan</label>

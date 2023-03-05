@@ -37,6 +37,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nomor Tagihan</th>
+                            <th>Status Tagihan</th>
                             <th>Nama Siswa</th>
                             <th>Tanggal Tagihan</th>
                             <th>Tanggal Jatuh Tempo</th>
@@ -52,6 +53,7 @@
                                 <td>
                                     <a href="<?= site_url('admin/invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
                                 </td>
+                                <td><?= get_status_pembayaran($row['invoice_status']) ?></td>
                                 <td><?= get_student_name($row['student_id']) ?></td>
                                 <td><?= $row['start_date'] ?></td>
                                 <td><?= $row['due_date'] ?></td>

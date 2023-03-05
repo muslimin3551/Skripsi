@@ -55,6 +55,8 @@ class Invoice extends BaseController
             $student = new AdminStudentModel();
             $data['student'] = $student->findAll();
             $invoice = new AdminInvoiceModel();
+            $item = new AdminitemModel();
+            $data['items'] = $item->findAll();
             $data['invoice'] = $invoice->orderBy('id', 'desc')->first();
             $data['invoice_number'] = $data['invoice']['invoice_number'] + 1;
             $data['title'] = "ADD INVOICE";
@@ -90,7 +92,7 @@ class Invoice extends BaseController
                 $item = new AdminItemAbleModel();
                 $data_item = [
                     'invoice_id'            => $invoice_save['id'],
-                    'item_id'               => 1,
+                    'item_id'               => $this->request->getVar('item_id'),
                     'description'           => $this->request->getVar('description_item'),
                     'qty'                   => $this->request->getVar('qty'),
                     'rate'                  => $this->request->getVar('rate'),
@@ -107,6 +109,8 @@ class Invoice extends BaseController
             $student = new AdminStudentModel();
             $data['student'] = $student->findAll();
             $invoice = new AdminInvoiceModel();
+            $item = new AdminitemModel();
+            $data['item'] = $item->findAll();
             $data['invoice'] = $invoice->orderBy('id', 'desc')->first();
             $data['invoice_number'] = $data['invoice']['invoice_number'] + 1;
             $data['title'] = "ADD INVOICE";

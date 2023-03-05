@@ -17,6 +17,9 @@
             <?php if (session()->getFlashdata('msg')) : ?>
                 <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
             <?php endif; ?>
+            <?php if (session()->getFlashdata('msg_succes')) : ?>
+                <div class="alert alert-success"><?= session()->getFlashdata('msg_succes') ?></div>
+            <?php endif; ?>
             <br>
             <p>Hanya guru dan staff yang memiliki akses yang bisa login ke admin portal sistem informasi administrasi transaksi MI Al-Mubarak.</p>
             <br>
@@ -38,7 +41,7 @@
                 </button>
             </form>
             <div class="text-left mt-5 text-lg fs-4">
-                <p><a href="<?= base_url('admin/forgot') ?>" style="color:#018249;font-size: 14px;"> Lupa password ?</a></p>
+                <p><a href="<?= base_url('admin/forgot_password') ?>" style="color:#018249;font-size: 14px;"> Lupa password ?</a></p>
             </div>
         </div>
     </div>

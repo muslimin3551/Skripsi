@@ -1,4 +1,4 @@
-<?= $this->extend('admin/mazer/layouts/auth') ?>
+<?= $this->extend('admin/layouts/auth') ?>
 
 <?= $this->section('content') ?>
 <div class="row h-100">
@@ -18,15 +18,24 @@
             <p>Silahkan masukan pasword baru anda.</p>
             <br>
             <br>
-            <form action="index.html">
+            <?php if (isset($validation)) : ?>
+                <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('msg')) : ?>
+                <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('msg_succes')) : ?>
+                <div class="alert alert-success"><?= session()->getFlashdata('msg_succes') ?></div>
+            <?php endif; ?>
+            <form action="reset" method="post">
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password" class="form-control form-control-xl" placeholder="Password">
+                    <input type="password" class="form-control form-control-xl" name="password" placeholder="Password">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password" class="form-control form-control-xl" placeholder="Konfirmasi Password">
+                    <input type="password" class="form-control form-control-xl" name="confm_password" placeholder="Konfirmasi Password">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>

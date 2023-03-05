@@ -46,13 +46,18 @@ $routes->get('logout', 'User\Login::logout');
 $routes->post('login/auth', 'User\Login::auth');
 $routes->add('/profile', 'User\Profile::index');
 $routes->get('/forgot_password', 'User\Login::forgot_password');
+$routes->post('/forgot', 'User\Login::forgot');
+$routes->get('/reset_password', 'User\Login::reset_password');
+$routes->post('/reset', 'User\Login::reset');
 
 //admin
 $routes->group('admin', function ($routes) {
 	$routes->get('', 'Admin::index');
 	$routes->get('login', 'Admin\Login::index');
-	$routes->get('forgot', 'Admin\Login::forgot_password');
-	$routes->get('reset', 'Admin\Login::reset_password');
+	$routes->get('forgot_password', 'Admin\Login::forgot_password');
+	$routes->post('forgot', 'Admin\Login::forgot');
+	$routes->get('reset_password', 'Admin\Login::reset_password');
+	$routes->post('reset', 'Admin\Login::reset');
 	$routes->post('auth', 'Admin\Login::auth');
 	$routes->get('logout', 'Admin\Login::logout');
 	// main menu

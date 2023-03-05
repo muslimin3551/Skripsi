@@ -60,11 +60,13 @@
     <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <?= $this->renderSection('javascript') ?>
 
     <script src="/admin/assets/js/main.js"></script>
 </body>
+
 <script>
     $(document).ready(function() {
         $('#user').DataTable();
@@ -141,6 +143,95 @@
             }
         })
     })
+    <?php $uri = service('uri')->getSegments(); ?>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            datasets: [{
+                    label: '# jumlah tagihan',
+                    data: [<?php if ($uri[1] == 'dashboard') {
+                                echo  $sum_total_january;
+                            } ?>, <?php if ($uri[1] == 'dashboard') {
+                                        echo  $sum_total_february;
+                                    } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                echo  $sum_total_maret;
+                                            } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                    echo  $sum_total_april;
+                                                } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_mei;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_juni;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_juli;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_agustus;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_september;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_oktober;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_november;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_desember;
+                                                        } ?>],
+                    borderWidth: 1
+                },
+                {
+                    label: '# jumlah pembayarana',
+                    data: [<?php if ($uri[1] == 'dashboard') {
+                                echo  $sum_total_january_payment;
+                            } ?>, <?php if ($uri[1] == 'dashboard') {
+                                        echo  $sum_total_february_payment;
+                                    } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                echo  $sum_total_maret_payment;
+                                            } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                    echo  $sum_total_april_payment;
+                                                } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_mei_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_juni_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_juli_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_agustus_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_september_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_oktober_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_november_payment;
+                                                        } ?>, <?php if ($uri[1] == 'dashboard') {
+                                                            echo  $sum_total_desember_payment;
+                                                        } ?>],
+                    borderWidth: 1
+                },
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    $(document).on('change', '.pilih', function(e) {
+        var selectedValue = $('select[name="item"]').val();
+        var selectedValuesArray = selectedValue.split(',');
+        var id = selectedValuesArray[0];
+        var title = selectedValuesArray[1];
+        var description = selectedValuesArray[2];
+        var qty = selectedValuesArray[3];
+        var rate = selectedValuesArray[4];
+        document.getElementById("item_id").value = id;
+        document.getElementById("title").value = title;
+        document.getElementById("description_item").value = description;
+        document.getElementById("qty").value = qty;
+        document.getElementById("rate").value = rate;
+    });
 </script>
 
 </html>

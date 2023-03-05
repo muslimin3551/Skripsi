@@ -18,9 +18,18 @@
             <p>Silahkan Masukan NIP anda.</p>
             <br>
             <br>
-            <form action="index.html">
+            <?php if (isset($validation)) : ?>
+                <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('msg')) : ?>
+                <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('msg_succes')) : ?>
+                <div class="alert alert-success"><?= session()->getFlashdata('msg_succes') ?></div>
+            <?php endif; ?>
+            <form action="/admin/forgot" method="post">
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="text" class="form-control form-control-xl" placeholder="NIP">
+                    <input type="text" class="form-control form-control-xl" name="nip" placeholder="NIP">
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>
                     </div>

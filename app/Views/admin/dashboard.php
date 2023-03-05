@@ -5,9 +5,9 @@
 </div>
 <div class="page-content">
     <section class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-12">
             <div class="row">
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="row">
@@ -17,14 +17,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Siswa</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $count_student ?></h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="row">
@@ -34,14 +34,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="text-muted font-semibold">Tagihan</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $count_invoice ?></h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="row">
@@ -51,25 +51,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon red">
-                                        <i class="iconly-boldBookmark"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Pembayaran</h6>
+                                    <h6 class="font-extrabold mb-0"><?= $count_payment ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -80,181 +63,101 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Profile Visit</h4>
+                            <h4>Grafik pembayaran</h4>
                         </div>
                         <div class="card-body">
-                            <div id="chart-profile-visit"></div>
+                            <div>
+                                <canvas id="myChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-xl-4">
+                <div class="col-12 col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Profile Visit</h4>
+                            <h4>top 5 Tagihan Hari ini</h4>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
-                                            <use xlink:href="/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">Europe</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">862</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-europe"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
-                                            <use xlink:href="/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">America</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">375</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-america"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
-                                            <use xlink:href="/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">Indonesia</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">1025</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-indonesia"></div>
-                                </div>
-                            </div>
+                            <table class="table">
+                                <?php if ($invoice_today) { ?>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($invoice_today as $row) { ?>
+                                        <tr>
+                                            <td scope="row"><?= $no++ ?></td>
+                                            <td>
+                                                <a href="<?= site_url('admin/invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
+                                            </td>
+                                            <td><?= $row['description'] ?></td>
+                                            <td>Rp <?= number_format($row['total'], 2, ',', '.'); ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <p>Tagihan tidak di temukan</p>
+                                <?php } ?>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-8">
+            </div>
+            <div class="row">
+                <div class="col-12 col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Latest Comments</h4>
+                            <h4>top 5 Tagihan Bulan ini</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-lg">
-                                    <thead>
+                            <table class="table">
+                                <?php if ($invoice_monthly) { ?>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($invoice_monthly as $row) { ?>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Comment</th>
+                                            <td scope="row"><?= $no++ ?></td>
+                                            <td>
+                                                <a href="<?= site_url('admin/invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
+                                            </td>
+                                            <td><?= $row['description'] ?></td>
+                                            <td>Rp <?= number_format($row['total'], 2, ',', '.'); ?></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="/assets/images/faces/5.jpg">
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Congratulations on your graduation!</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="/assets/images/faces/2.jpg">
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Wow amazing design! Can you make another
-                                                    tutorial for
-                                                    this design?</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <p>Tagihan tidak di temukan</p>
+                                <?php } ?>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-3">
-            <div class="card">
-                <div class="card-body py-4 px-5">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="/assets/images/faces/1.jpg" alt="Face 1">
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>top 5 Tagihan tahun ini</h4>
                         </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Recent Messages</h4>
-                </div>
-                <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="/assets/images/faces/4.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                        <div class="card-body">
+                            <table class="table">
+                                <?php if ($invoice_yearly) { ?>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($invoice_yearly as $row) { ?>
+                                        <tr>
+                                            <td scope="row"><?= $no++ ?></td>
+                                            <td>
+                                                <a href="<?= site_url('admin/invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
+                                            </td>
+                                            <td><?= $row['description'] ?></td>
+                                            <td>Rp <?= number_format($row['total'], 2, ',', '.'); ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <p>Tagihan tidak di temukan</p>
+                                <?php } ?>
+                            </table>
                         </div>
                     </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="/assets/images/faces/5.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="/assets/images/faces/1.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                            Conversation</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Visitors Profile</h4>
-                </div>
-                <div class="card-body">
-                    <div id="chart-visitors-profile"></div>
                 </div>
             </div>
         </div>

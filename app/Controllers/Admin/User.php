@@ -109,6 +109,7 @@ class User extends BaseController
                 $user->update($id, [
                     "nip" => $this->request->getPost('nip'),
                     "name" => $this->request->getPost('name'),
+                    "role_id" => $this->request->getPost('role_id'),
                     "email" => $this->request->getPost('email'),
                     "gender" => $this->request->getPost('gender'),
                     "address" => $this->request->getPost('address'),

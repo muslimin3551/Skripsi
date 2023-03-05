@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-6 card debit">
                 <p>Total Tagihan</p>
-                <h4>Rp 1.000.000</h4>
+                <h4>Rp <?= number_format($total_tagihan, 2, ',', '.'); ?></h4>
                 <a href="/invoice" class="btn btn-success" style="background-color: #ffffff;color: #018249;">
                     <Detail class="fa-solid fa-wallet"> Detail</i>
                 </a>
@@ -44,24 +44,22 @@
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                             <table class="table">
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
+                                    <?php if ($invoice_today) { ?>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($invoice_today as $row) { ?>
+                                            <tr>
+                                                <td scope="row"><?php $no++ ?></td>
+                                                <td>
+                                                    <a href="<?= site_url('invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
+                                                </td>
+                                                <td><?= $row['description'] ?></td>
+                                                <td>Rp <?= number_format($row['total'], 2, ',', '.'); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <p>Tagihan tidak di temukan</p>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <button class="btn btn-success">Lihat Semua</button>
@@ -69,24 +67,22 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                             <table class="table">
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
+                                    <?php if ($invoice_monthly) { ?>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($invoice_monthly as $row) { ?>
+                                            <tr>
+                                                <td scope="row"><?php $no++ ?></td>
+                                                <td>
+                                                    <a href="<?= site_url('invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
+                                                </td>
+                                                <td><?= $row['description'] ?></td>
+                                                <td>Rp <?= number_format($row['total'], 2, ',', '.'); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <p>Tagihan tidak di temukan</p>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <button class="btn btn-success">Lihat Semua</button>
@@ -94,24 +90,23 @@
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
                             <table class="table">
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>2023001</td>
-                                        <td>Spp Januari</td>
-                                        <td>Rp 175.000</td>
-                                    </tr>
+                                    <?php if ($invoice_yearly) { ?>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($invoice_yearly as $row) { ?>
+                                            <tr>
+                                                <td scope="row"><?php $no++ ?></td>
+                                                <td>
+                                                    <a href="<?= site_url('invoice/detail/' . $row['id']) ?>" style="color: #018249;text-decoration:none;"><?= $row['invoice_number'] ?></a>
+                                                </td>
+                                                <td><?= $row['description'] ?></td>
+                                                <td>Rp <?= number_format($row['total'], 2, ',', '.'); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <p>Tagihan tidak di temukan</p>
+                                    <?php } ?>
+                                </tbody>
                                 </tbody>
                             </table>
                             <button class="btn btn-success">Lihat Semua</button>
