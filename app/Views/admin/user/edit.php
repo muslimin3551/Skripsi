@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Tanggal Lahir</label>
-                                <input type="date" name="brd_date" value="<?= $user['brd_date'] ?>" class="form-control" placeholder="Tanggal lahir" required>
+                                <input type="date" name="brd_date" value="<?= date_format(date_create($user['brd_date']),'Y-m-d') ?>" class="form-control" placeholder="Tanggal lahir" required>
                             </div>
                         </div>
                         <div class="form-group">
