@@ -59,7 +59,12 @@ class Invoice extends BaseController
             $item = new AdminitemModel();
             $data['items'] = $item->findAll();
             $data['invoice'] = $invoice->orderBy('id', 'desc')->first();
-            $data['invoice_number'] = $data['invoice']['invoice_number'] + 1;
+            if($data['invoice'] != null){
+                $data['invoice_number'] = $data['invoice']['invoice_number'] + 1;
+                
+            }else{
+                $data['invoice_number'] = date('Y').'0001';
+            }
             $data['title'] = "ADD INVOICE";
             echo view('/admin/invoice/create', $data);
         }
