@@ -186,7 +186,9 @@ class Invoice extends BaseController
         $session = session();
         $session->setFlashdata('msg_succes', 'data anda berhasil di hapus!');
         $data_payment = $payment->where('invoice_id', $id)->first();
-        $payment->delete($data_payment['id']);;
+        if ($data_payment) {
+            $payment->delete($data_payment['id']);
+        }
         $invoice->delete($id);
         return redirect('admin/invoice');
     }
