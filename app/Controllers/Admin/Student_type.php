@@ -99,7 +99,7 @@ class Student_type extends BaseController
                 ]);
                 $session = session();
                 $session->setFlashdata('msg_succes', 'your data has been Updated!');
-                return redirect('admin/clstudent_typeass');
+                return redirect('admin/student_type');
             }
 
             // tampilkan form edit
