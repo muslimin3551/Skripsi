@@ -50,7 +50,7 @@
                                 <td><?= $row['description'] ?></td>
                                 <td>
                                     <a href="<?= base_url('admin/payment_type/' . $row['id'] . '/edit') ?>" class="btn btn-sm btn-outline-success m-1">Edit</a>
-                                    <a href="#" data-href="<?= base_url('admin/payment_type/' . $row['id'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-sm btn-outline-danger m-1">Delete</a>
+                                    <!-- <a href="#" data-href="<?= base_url('admin/payment_type/' . $row['id'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-sm btn-outline-danger m-1">Delete</a> -->
                                 </td>
                             </tr>
                         <?php } ?>
