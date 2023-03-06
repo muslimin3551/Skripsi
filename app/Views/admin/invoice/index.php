@@ -59,10 +59,10 @@
                                 <td><?= $row['due_date'] ?></td>
                                 <td>Rp <?= $row['total'] ?></td>
                                 <td>
-                                    <!-- <a href="<?= base_url('admin/invoice/' . $row['id'] . '/edit') ?>" class="btn btn-sm btn-outline-success m-1">Edit</a> -->
+                                    <a href="<?= base_url('admin/invoice/' . $row['id'] . '/edit') ?>" class="btn btn-sm btn-outline-success m-1">Edit</a>
                                     <a href="#" data-href="<?= base_url('admin/invoice/' . $row['id'] . '/delete') ?>" onclick="confirmToDelete(this)" class="btn btn-sm btn-outline-danger m-1">Delete</a>
                                 </td>
-                            </tr>
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>

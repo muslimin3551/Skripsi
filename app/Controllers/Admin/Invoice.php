@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\PaymentModel as AdminPaymentModel;
 use App\Models\Admin\StudentModel as AdminStudentModel;
 use App\Models\Admin\InvoiceModel as AdminInvoiceModel;
 use App\Models\Admin\ItemAbleModel as AdminItemAbleModel;
@@ -100,7 +101,7 @@ class Invoice extends BaseController
                 $invoice_save = $item->save($data_item);
             }
             $session = session();
-            $session->setFlashdata('msg_succes', 'your data has been added!');
+            $session->setFlashdata('msg_succes', 'data anda berhasil di simpan!');
             return redirect()->to('admin/invoice');
         } else {
             $session = session();
@@ -129,36 +130,51 @@ class Invoice extends BaseController
             $session = session();
             $data['name'] = $session->get('name');
             // ambil artikel yang akan diedit
-            $student = new AdminUserModel();
-            $data['student'] = $student->where('id', $id)->first();
+            $invoice = new AdminInvoiceModel();
+            $data['invoice'] = $invoice->where('id', $id)->first();
+            $item = new AdminitemModel();
+            $item_able = new AdminItemAbleModel();
+            $data['items'] = $item->findAll();
+            $data['item_able'] = $item_able->where('invoice_id', $id)->first();
+            $student = new AdminStudentModel();
+            $data['student'] = $student->findAll();
 
             // lakukan validasi data mahasiswa
             $validation =  \Config\Services::validation();
             $validation->setRules([
-                'id' => 'required',
-                'name' => 'required'
+                'student_id' => 'required',
+                'description' => 'required'
             ]);
             $isDataValid = $validation->withRequest($this->request)->run();
             // jika data vlid, maka simpan ke database
             if ($isDataValid) {
-                $student->update($id, [
-                    "name" => $this->request->getPost('name'),
-                    "nim" => $this->request->getPost('nim'),
-                    "phonenumber" => $this->request->getPost('phonenumber'),
-                    "faculty" => $this->request->getPost('faculty'),
-                    "study_program" => $this->request->getPost('study_program'),
-                    "concentration" => $this->request->getPost('concentration'),
-                    "class" => $this->request->getPost('class'),
-                    "active" => $this->request->getPost('active'),
+                $invoice_save = $invoice->update($id, [
+                    'student_id'                => $this->request->getPost('student_id'),
+                    'description'               => $this->request->getPost('description'),
+                    'start_date'                => $this->request->getPost('start_date'),
+                    'due_date'                  => $this->request->getPost('due_date'),
+                    'subtotal'                  => $this->request->getPost('total'),
+                    'total'                     => $this->request->getPost('total'),
+                    'admin_note'                => $this->request->getPost('admin_note'),
                 ]);
+                if ($invoice_save) {
+                    $item_able->update($id, [
+                        'invoice_id'            => $id,
+                        'item_id'               => $this->request->getPost('item_id'),
+                        'description'           => $this->request->getPost('description_item'),
+                        'qty'                   => $this->request->getPost('qty'),
+                        'rate'                  => $this->request->getPost('rate'),
+                    ]);
+                }
                 $session = session();
-                $session->setFlashdata('msg_succes', 'your data has been Updated!');
-                return redirect('admin/student');
+                $session->setFlashdata('msg_succes', 'data anda berhasil di update!');
+                return redirect('admin/invoice');
             }
 
             // tampilkan form edit
-            $data['title'] = "EDIT MAHASISWA";
-            echo view('/admin/student/edit', $data);
+            $data['validation'] = $this->validator;
+            $data['title'] = "EDIT INVOICE";
+            echo view('/admin/invoice/edit', $data);
         }
     }
     //--------------------------------------------------------------------------
@@ -166,8 +182,11 @@ class Invoice extends BaseController
     public function delete($id)
     {
         $invoice = new AdminInvoiceModel();
+        $payment = new AdminPaymentModel();
         $session = session();
-        $session->setFlashdata('msg_succes', 'your data has been deleted!!');
+        $session->setFlashdata('msg_succes', 'data anda berhasil di hapus!');
+        $data_payment = $payment->where('invoice_id', $id)->first();
+        $payment->delete($data_payment['id']);;
         $invoice->delete($id);
         return redirect('admin/invoice');
     }

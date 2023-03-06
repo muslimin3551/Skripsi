@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">Total</label>
-                                <input type="number" min="0" name="total" value="<?= $invoice['total']; ?>" class="form-control" placeholder="Total tagihan " required>
+                                <input type="number" min="<?= $invoice['total']; ?>" name="total"  max="<?= $invoice['total']; ?>" value="<?= $invoice['total']; ?>" class="form-control" placeholder="Total tagihan " required>
                             </div>
                             <p style="font-size: 12px;">Jika total yang di masukan kurang dari jumalah tagihan maka status invoice akan menjadi partial dan sisa dari kekurangn pembayran akan kembali di tagihkan oleh pihak TU</p>
                             <div class="form-group">
